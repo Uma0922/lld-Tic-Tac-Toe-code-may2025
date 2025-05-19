@@ -147,27 +147,36 @@ public class Game {
             System.out.println("No move to undo");
             return;
         }
-
-        // WE ARE GOING AHEAD WITH WAY-1 FOR UNDO. EASY FOR THIS PROBLEM.
-        /**
-         * S1. Remove the last element from the moves
-         * S2. Update the cell to empty state
-         * S3. Update the winning strategy. 
-         */
-        Move lastMove = moves.get(moves.size() - 1);
-
-        moves.remove(lastMove);
-
-        Cell cell = lastMove.getCell();
-        cell.setPlayer(null);
-        cell.setCellState(CellState.EMPTY);
-
-        for (WinningStrategy winningStrategy: winningStrategies) {
-            winningStrategy.handleUndo(board, lastMove);
+        if(!gameState.equals(GameState.IN_PROGRESS)){
+            System.out.println("No UNDO Can be done!");
+            return;
         }
 
-        nextMovePlayerIndex -= 1;
-        nextMovePlayerIndex = (nextMovePlayerIndex + players.size()) % players.size();
+        /**
+         * 1. Get the moves
+         * 2. Remove the last move from moves.
+         * 3. Update the cell state, and remove player.
+         * 4. Update the playerIdx
+         * 5. Update the hashmaps as well
+         * 
+         */
+        
+         Move lastMove = moves.get(moves.size()-1);
+         moves.remove(lastMove);
+
+         // Update the cell.
+         lastMove.getCell().setCellState(CellState.EMPTY);
+         lastMove.getCell().setPlayer(null);
+
+         nextMovePlayerIndex -= 1;
+         nextMovePlayerIndex = (nextMovePlayerIndex + players.size()) %players.size();
+        
+
+         // Now UpdateHashMap
+         for(WinningStrategy winningStrategy : winningStrategies){
+            winningStrategy.handleUndo(board, lastMove);
+         }
+
     }
 
     public void makeMove() {
