@@ -15,7 +15,26 @@ public class ColWinningStrategy implements WinningStrategy {
 
     @Override
     public boolean checkWinner(Board board, Move move) {
-        return true;
+        int colNo = move.getCell().getCol();
+        String symbol = move.getPlayer().getSymbol();
+
+        if(!counts.containsKey(colNo)){
+            counts.put(colNo, new HashMap<>());
+        }
+
+        Map<String,Integer> individualColMap = counts.get(colNo); // get from existing hashmap.
+
+        if(!individualColMap.containsKey(symbol)){
+            individualColMap.put(symbol, 0);
+        }
+
+        individualColMap.put(symbol, individualColMap.get(symbol)+1); // increamenting.
+
+        // Win check. 
+        if(individualColMap.get(symbol).equals(board.getSize())){
+            return true;
+        }
+        return false;
     }
 
   

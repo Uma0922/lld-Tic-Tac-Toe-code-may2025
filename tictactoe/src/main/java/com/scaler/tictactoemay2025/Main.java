@@ -10,6 +10,8 @@ import com.scaler.tictactoemay2025.model.Game;
 import com.scaler.tictactoemay2025.model.GameState;
 import com.scaler.tictactoemay2025.model.Player;
 import com.scaler.tictactoemay2025.model.PlayerType;
+import com.scaler.tictactoemay2025.strategies.ColWinningStrategy;
+import com.scaler.tictactoemay2025.strategies.RowWinningStrategy;
 import com.scaler.tictactoemay2025.strategies.WinningStrategy;
 
 public class Main {
@@ -24,7 +26,13 @@ public class Main {
         List<Player> players = new ArrayList<>();
         players.add(new Player(1L, "Abhishek", "X", PlayerType.HUMAN));
         players.add(new Player(1L, "Naveen", "O", PlayerType.HUMAN));
+        
         List<WinningStrategy> winningStrategies = new ArrayList<>();
+        winningStrategies.add(new RowWinningStrategy());
+        winningStrategies.add(new ColWinningStrategy());
+        
+        // Add code for adding winning strategies.
+
 
         GameController gameController = new GameController();
         // Now your game has been created.

@@ -171,8 +171,68 @@ public class Game {
     }
 
     public void makeMove() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'makeMove'");
+        /**
+         * STEPS:
+         * 1. Get the Player. DONE
+         * 2. Then you will take input from the player,. DONE
+         * 3. Update symbol in particular cell.
+         * 4. Update the cell state. D
+         * 5. Store to the moves DONE
+         * 6. Calculate next player
+         * 7. Check winner.
+         */
+
+         Player currentPlayer  = players.get(nextMovePlayerIndex);
+         System.out.println("It is Player: "+currentPlayer.getName() +" move right now.");
+         Move currentMove = currentPlayer.makeMove(board);
+
+         if(invalidMove(currentMove)){
+            System.out.println("Invalid move by the player!");
+            return;
+         }
+        
+         int currentRow = currentMove.getCell().getRow();
+         int currCol = currentMove.getCell().getCol();
+         System.out.println("move is made in --> Row: " + currentRow + "col: " + currCol);
+         
+        Cell currCell =  board.getBoard().get(currentRow).get(currCol);
+        currCell.setCellState(CellState.FILLED);
+        currCell.setPlayer(currentPlayer);
+        
+        // Store in moves.
+        Move newMove = new Move(currCell, currentPlayer);
+        moves.add(newMove); // 
+        
+        // Calculate next player Index:
+        nextMovePlayerIndex +=1;
+        nextMovePlayerIndex %= players.size(); // (5/4=1)
+
+
+        if(checkWinner(board, newMove)){
+            gameState = GameState.WIN;
+            winner = currentPlayer;
+        }else if(moves.size() == this.getBoard().getSize()* this.getBoard().getSize()){
+            gameState = GameState.DRAW;
+        }
+    }
+
+    private boolean checkWinner(Board board, Move newMove) {
+        for(WinningStrategy wStrategy : winningStrategies){
+            if(wStrategy.checkWinner(board, newMove)){
+                System.out.println("Check winner returns true : ");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean invalidMove(Move currentMove) {
+        /**
+         *  But you guys will have to handle the validation cases.
+         * 1. Row>=0 , Col>=0 && row<n && col <n
+         * 2. If the current cell state is NOT EMPTY -- then return true.
+         */
+        return false;
     }
 
     public void printBoard() {

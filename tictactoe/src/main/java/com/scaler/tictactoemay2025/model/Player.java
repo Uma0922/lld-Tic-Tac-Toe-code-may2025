@@ -48,6 +48,16 @@ public class Player {
     public void setScanner(Scanner scanner) {
         this.scanner = scanner;
     }
+
+
+    public Move makeMove(Board board) {
+        System.out.println("Please tell row: ");
+        int row = scanner.nextInt();
+
+        System.out.println("Please tell col: ");
+        int col = scanner.nextInt();
+        return new Move(new Cell(row, col), this);
+    }
     
 
     
