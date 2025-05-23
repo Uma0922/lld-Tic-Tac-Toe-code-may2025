@@ -6,6 +6,7 @@ import com.example.parkinglot.exception.ParkingLotException;
 import com.example.parkinglot.model.Gate;
 import com.example.parkinglot.model.ParkingLot;
 import com.example.parkinglot.model.ParkingSpot;
+import com.example.parkinglot.model.ParkingSpotStatus;
 import com.example.parkinglot.model.Ticket;
 import com.example.parkinglot.model.Vehicle;
 import com.example.parkinglot.repository.GateRepo;
@@ -55,18 +56,18 @@ public class TicketServiceImpl implements iTicketService {
 
         ParkingLot parkingLot = parkingLotOptional.get();
         Gate gate = gateOptional.get();
-        System.out.println("ParkingLot: " + parkingLot);
-         System.out.println("gate: " + gate);
         
         // Find the parking spot.
         Optional<ParkingSpot> availParkingSpotOptional = iSpotAssignmentStrategy.
         findParkingSpot(vehicle.getVehicleType(), parkingLot);
         
         if(availParkingSpotOptional.isEmpty()){
-            System.out.println("NO PARKING SPOT AVAILABLE...");
             throw new ParkingLotException("No Parking Spot available!");
         }
         
+        availParkingSpotOptional.get().setParkingSpotStatus(ParkingSpotStatus.FILLED);
+        // Update this spot in the Repo;
+
         Ticket ticket = new Ticket(vehicle, gate, 
         gate.getCurrentOperator(), availParkingSpotOptional.get());
 
