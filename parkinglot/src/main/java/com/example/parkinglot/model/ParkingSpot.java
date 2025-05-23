@@ -1,12 +1,20 @@
 package com.example.parkinglot.model;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class ParkingSpot extends BaseModel {
-    private List<VehicleType> supportedVehicleTypes;
+    private List<VehicleType> supportedVehicleTypes; // 
     private ParkingSpotStatus parkingSpotStatus;
     private int spotNumber;
     private ParkingFloor parkingFloor;
+    
+
+    public ParkingSpot( int spotNumber) {
+        this.supportedVehicleTypes = Arrays.asList(VehicleType.CAR);
+        this.parkingSpotStatus = ParkingSpotStatus.EMPTY;
+        this.spotNumber = spotNumber;
+    }
 
     public List<VehicleType> getSupportedVehicleTypes() {
         return supportedVehicleTypes;

@@ -1,5 +1,6 @@
 package com.example.parkinglot.model;
 
-public class FeesCalculatorStrategyType {
-    
+public enum FeesCalculatorStrategyType {
+    STRAIGHT_FARE,
+    INCREAMENTAL_FARE
 }

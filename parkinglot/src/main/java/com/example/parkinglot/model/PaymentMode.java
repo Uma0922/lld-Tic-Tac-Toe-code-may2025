@@ -1,3 +1,7 @@
 package com.example.parkinglot.model;
 
-public enum PaymentMode { }
+public enum PaymentMode {
+    ONLINE,
+    CASH,
+    FASTTAG
+ }

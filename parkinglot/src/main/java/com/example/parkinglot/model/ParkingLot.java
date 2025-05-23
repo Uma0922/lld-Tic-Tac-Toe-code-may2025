@@ -5,11 +5,23 @@ import java.util.List;
 public class ParkingLot extends BaseModel {
     private List<ParkingFloor> parkingFloors;
     private List<Gate> gates;
-    private List<VehicleType> vehicleTypes;
+    private List<VehicleType> vehicleTypes; // supported vehicle types in my parking lot.
     private ParkingLotStatus parkingLotStatus;
     private SpotAssignmentStrategyType spotAssignmentStrategyType;
     private FeesCalculatorStrategyType feesCalculatorStrategyType;
 
+    
+
+    public ParkingLot(List<ParkingFloor> parkingFloors, List<Gate> gates, List<VehicleType> vehicleTypes,
+            ParkingLotStatus parkingLotStatus, SpotAssignmentStrategyType spotAssignmentStrategyType,
+            FeesCalculatorStrategyType feesCalculatorStrategyType) {
+        this.parkingFloors = parkingFloors;
+        this.gates = gates;
+        this.vehicleTypes = vehicleTypes;
+        this.parkingLotStatus = parkingLotStatus;
+        this.spotAssignmentStrategyType = spotAssignmentStrategyType;
+        this.feesCalculatorStrategyType = feesCalculatorStrategyType;
+    }
 
     public List<ParkingFloor> getParkingFloors() {
         return parkingFloors;

@@ -1,6 +1,6 @@
 package com.example.parkinglot.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Ticket extends BaseModel {
 
@@ -10,6 +10,14 @@ public class Ticket extends BaseModel {
     private ParkingSpot assignedSpot;
     private Gate generatedAt;
     private Operator generatedBy;
+
+    public Ticket(Vehicle vehicle, Gate gate, Operator operator, ParkingSpot parkingSpot){
+        this.vehicle = vehicle;
+        this.generatedAt = gate;
+        this.generatedBy = operator;
+        this.assignedSpot = parkingSpot;
+        this.entryTime = new Date();
+    }
 
     public String getNumber() {
         return number;

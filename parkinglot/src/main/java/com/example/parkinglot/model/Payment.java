@@ -5,10 +5,10 @@ import java.sql.Date;
 public class Payment {
 
     private PaymentMode paymentMode;
-    private int amount;
+    private int amount; // integer. But actually it can be double.
     private Date time;
     private PaymentStatus paymentStatus;
-    private String referenceNumber;
+    private String referenceNumber; // 
 
     public PaymentMode getPaymentMode() {
         return paymentMode;

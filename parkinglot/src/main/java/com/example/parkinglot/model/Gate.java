@@ -7,6 +7,13 @@ public class Gate extends BaseModel {
     private Operator currentOperator;
     private GateStatus gateStatus;
 
+    public Gate(GateType type, int no, Operator operator){
+        this.gateType = type;
+        this.gateNumber = no;
+        this.currentOperator = operator;
+        this.gateStatus  =GateStatus.ACTIVE;
+    }
+
     public GateType getGateType() {
         return gateType;
     }
