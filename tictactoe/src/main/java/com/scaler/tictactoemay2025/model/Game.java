@@ -192,6 +192,13 @@ public class Game {
          */
 
          Player currentPlayer  = players.get(nextMovePlayerIndex);
+         
+        // If the player is BOT. Then you execute BotPlayingStrategy and return
+        // from here.
+        
+
+        
+
          System.out.println("It is Player: "+currentPlayer.getName() +" move right now.");
          Move currentMove = currentPlayer.makeMove(board);
 
