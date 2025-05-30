@@ -1,5 +1,7 @@
 package com.scaler.bms2025.bmsmay2025.model;
 
+import java.util.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -19,4 +21,8 @@ public class ShowSeat extends BaseModel {
     
     @Enumerated(EnumType.ORDINAL)
     private ShowSeatStatus ShowSeatStatus;
+
+    private double price;
+
+    private Date seatBlockedAt;
 }

@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.scaler.bms2025.bmsmay2025.service.UserServiceImpl;
 import com.scaler.bms2025.dto.UserResponse;
 
-import jakarta.websocket.server.PathParam;
-
 @RestController
 public class UserController {
     // All the CRUD Operations for User.
