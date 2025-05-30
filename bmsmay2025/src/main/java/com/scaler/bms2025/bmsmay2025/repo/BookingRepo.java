@@ -10,7 +10,6 @@ import com.scaler.bms2025.bmsmay2025.model.Booking;
 @Repository
 public interface BookingRepo extends JpaRepository<Booking, Long> {
  
-    List<Booking> getAllBookings();
     Booking save(Booking booking);
     
 }

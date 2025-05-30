@@ -9,5 +9,5 @@ import com.scaler.bms2025.bmsmay2025.model.User;
 
 @Repository
 public interface UserRepo extends JpaRepository<User,Long> {
-
+ Optional<User> findByUserName(String userName);
 }
