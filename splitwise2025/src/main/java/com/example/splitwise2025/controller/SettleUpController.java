@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.splitwise2025.dto.SettleUpRepsonseDTO;
+import com.example.splitwise2025.model.Expense;
 import com.example.splitwise2025.service.impl.ISettleUpService;
 
 @RestController
@@ -25,7 +26,7 @@ public class SettleUpController {
 
     @PostMapping("/settleup/{userId}")
     public SettleUpRepsonseDTO settleUpForUser(@PathVariable("userId") Long userId){
-        List<String> transactionsToExecute =  iSettleUpService.settleUp(userId);
+        List<Expense> transactionsToExecute =  iSettleUpService.settleUp(userId);
 
         return null;
     }
